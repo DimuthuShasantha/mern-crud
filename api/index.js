@@ -7,6 +7,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 import userRoutes from "./routes/user.route.js";
+import authRoutes from "./routes/auth.route.js";
 
 /* CONFIGURATIONS */
 const app = express();
@@ -25,6 +26,7 @@ app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
 
+
 /* MONGODB SETUP */
 mongoose
   .connect(process.env.MONGODB_URL)
@@ -35,5 +37,18 @@ mongoose
     console.log(`${error} did not work`);
   });
 
+
 /* ROUTES */
 app.use("/api/user", userRoutes);
+app.use("/api/auth", authRoutes);
+
+/* MIDDLEWARES */
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal server error!";
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+});
