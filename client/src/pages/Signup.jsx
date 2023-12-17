@@ -1,7 +1,7 @@
 import { LockClosedIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import toast, { Toaster } from 'react-hot-toast';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
 
@@ -80,6 +80,9 @@ const Signup = () => {
           { loading ? "loading" : "sign up" }
         </button>
       </form>
+      <div className="mt-5 text-center">
+        <span>Have an Account? <Link to="/signin" className="text-blue-700">Sign In</Link></span>
+      </div>
     </div>
   );
 };
