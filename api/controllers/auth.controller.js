@@ -7,8 +7,7 @@ export const signup = async (req, res, next) => {
     const { username, email, password } = req.body;
 
     const existUsername = await User.findOne({ username });
-    if (existUsername)
-      return next(errorHandler(400, "Username already exist!"));
+    if (existUsername) return next(errorHandler(400, "Username already exist!"));
 
     const existEmail = await User.findOne({ email });
     if (existEmail) return next(errorHandler(400, "Email already exist!"));
