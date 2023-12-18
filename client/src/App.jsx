@@ -4,7 +4,8 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import NavBar from "./components/NavBar";
 import About from "./pages/About";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
+import PrivateRoutes from "./components/PrivateRoutes";
 
 const App = () => {
   return (
@@ -14,8 +15,10 @@ const App = () => {
       <Routes>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/about" element={<About />} />
+        <Route element={<PrivateRoutes />}>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/about" element={<About />} />
+        </Route>
       </Routes>
     </>
   );

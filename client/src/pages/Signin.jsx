@@ -37,7 +37,7 @@ const Signin = () => {
         return;
       }
       dispatch(signInSuccess(data));
-      toast.success(data.message);
+      toast.success("Welcome... Successfully signed in!");
       navigate("/");
     } catch (error) {
       dispatch(signInFailure());
@@ -46,8 +46,8 @@ const Signin = () => {
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="font-bold text-slate-800 text-3xl text-center my-7">
+    <div className="max-w-lg p-3 mx-auto">
+      <h1 className="text-3xl font-bold text-center text-slate-800 my-7">
         Sign In
       </h1>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -72,7 +72,7 @@ const Signin = () => {
           onChange={handleChange}
           disabled={loading}
         />
-        <button className="p-3 bg-slate-800 text-white font-semibold uppercase hover:opacity-95 cursor: pointer items-center justify-center flex disabled:opacity-80">
+        <button className="flex items-center justify-center p-3 font-semibold text-white uppercase bg-slate-800 hover:opacity-95 cursor: pointer disabled:opacity-80">
           <LockClosedIcon className="w-5 h-5 mr-2" />
           {loading ? "loading" : "sign in"}
         </button>

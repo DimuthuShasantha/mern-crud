@@ -22,9 +22,7 @@ export const signup = async (req, res, next) => {
       password: hashedPassowrd,
     });
     await newUser.save();
-    res
-      .status(201)
-      .json({ message: "You've signed up successfully!" });
+    res.status(201).json({ message: "Great... Successfully signed up!" });
   } catch (error) {
     next(error);
   }
@@ -44,7 +42,19 @@ export const signin = async (req, res, next) => {
 
     const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
     const { password: pass, ...rest } = validUser._doc;
-    res.cookie("ACCESS_TOKEN", token, { httpOnly: true }).status(200).json({ rest, message: "Welcome... You've signed in successfully!"});
+    res
+      .cookie("ACCESS_TOKEN", token, { httpOnly: true })
+      .status(200)
+      .json(rest);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const signout = async (req, res, next) => {
+  try {
+    res.clearCookie("ACCESS_TOKEN");
+    res.status(200).json({ message: "Logout successfully!" });
   } catch (error) {
     next(error);
   }
