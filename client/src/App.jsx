@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar";
 import About from "./pages/About";
 import toast, { Toaster } from "react-hot-toast";
 import PrivateRoutes from "./components/PrivateRoutes";
+import UserForm from "./pages/UserForm";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route element={<PrivateRoutes />}>
           <Route path="/" element={<Dashboard />} />
           <Route path="/about" element={<About />} />
+          <Route path="/new-user" element={<UserForm />} />
         </Route>
       </Routes>
     </>
